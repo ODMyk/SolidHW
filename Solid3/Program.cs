@@ -2,46 +2,37 @@
 
 namespace Solid3;
 
-class Rectangle
+interface IShape
+{
+    int GetArea();
+}
+
+class Rectangle : IShape
 {
     public virtual int Width { get; set; }
     public virtual int Height { get; set; }
-    public int GetRectangleArea()
+    public int GetArea()
     {
         return Width * Height;
     }
 }
 
-class Square : Rectangle
+class Square : IShape
 {
-    public override int Width
-    {
-        get { return base.Width; }
-        set
-        {
-            base.Height = value;
-            base.Width = value;
-        }
-    }
-    public override int Height
-    {
-        get { return base.Height; }
-        set
-        {
-            base.Height = value;
-            base.Width = value;
-        }
-    }
+    public int SideLength { get; set; }
 
-    class Program
+    public int GetArea()
     {
-        static void Main(string[] args)
-        {
-            Rectangle rect = new Square();
-            rect.Width = 5;
-            rect.Height = 10;
+        return SideLength * SideLength;
+    }
+}
 
-            Console.WriteLine(rect.GetRectangleArea());
-        }
+class Program
+{
+    static void Main(string[] args)
+    {
+        IShape rect = new Square { SideLength = 10 };
+
+        Console.WriteLine(rect.GetArea());
     }
 }
