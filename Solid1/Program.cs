@@ -7,36 +7,47 @@ class Item
 {
 
 }
+
+class PriceCalculator
+{
+    public void CalculateTotalSum(List<Item> items) {/*...*/}
+}
 class Order
 {
-    private List<Item> itemList;
+    public IList<Item> ItemList { get; set; }
 
-    internal List<Item> ItemList
+    public Order()
     {
-        get
-        {
-            return itemList;
-        }
-
-        set
-        {
-            itemList = value;
-        }
+        ItemList = new List<Item>();
     }
 
-    public void CalculateTotalSum() {/*...*/}
+    public Order(IList<Item> list)
+    {
+        ItemList = list;
+    }
+
     public void GetItems() {/*...*/}
     public void GetItemCount() {/*...*/}
     public void AddItem(Item item) {/*...*/}
     public void DeleteItem(Item item) {/*...*/}
 
-    public void PrintOrder() {/*...*/}
-    public void ShowOrder() {/*...*/}
 
-    public void Load() {/*...*/}
-    public void Save() {/*...*/}
-    public void Update() {/*...*/}
-    public void Delete() {/*...*/}
+}
+
+class OrderDisplayer
+{
+
+    public void PrintOrder(Order order) {/*...*/}
+    public void ShowOrder(Order order) {/*...*/}
+}
+
+class StorageManager
+{
+
+    public void LoadOrder(Order order) {/*...*/}
+    public void SaveOrder(Order order) {/*...*/}
+    public void UpdateOrder(Order order) {/*...*/}
+    public void DeleteOrder(Order order) {/*...*/}
 }
 
 class Program
